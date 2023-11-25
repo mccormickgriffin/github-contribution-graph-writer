@@ -1,6 +1,6 @@
 class Letter:
     def __init__(self, graph) -> None:
-        if (graph.length != 7):
+        if (len(graph) != 7):
             raise ValueError("Invalid letter height")
         self.graph = graph
 
