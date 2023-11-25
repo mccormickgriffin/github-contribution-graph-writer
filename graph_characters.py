@@ -1,4 +1,4 @@
-from letter import Letter
+from graph_character import GraphCharacter
 
 A = [
     [0,0,1,0,0],
@@ -161,21 +161,21 @@ P = [
 ]
 
 
-letters = {
-    'A': Letter(A),
-    'B': Letter(B),
-    'C': Letter(C),
-    'D': Letter(D),
-    'E': Letter(E),
-    'F': Letter(F),
-    'G': Letter(G),
-    'H': Letter(H),
-    'I': Letter(I),
-    'J': Letter(J),
-    'K': Letter(K),
-    'L': Letter(L),
-    'M': Letter(M),
-    'N': Letter(N),
-    'O': Letter(O),
-    'P': Letter(P)
+graph_characters = {
+    'A': GraphCharacter(A),
+    'B': GraphCharacter(B),
+    'C': GraphCharacter(C),
+    'D': GraphCharacter(D),
+    'E': GraphCharacter(E),
+    'F': GraphCharacter(F),
+    'G': GraphCharacter(G),
+    'H': GraphCharacter(H),
+    'I': GraphCharacter(I),
+    'J': GraphCharacter(J),
+    'K': GraphCharacter(K),
+    'L': GraphCharacter(L),
+    'M': GraphCharacter(M),
+    'N': GraphCharacter(N),
+    'O': GraphCharacter(O),
+    'P': GraphCharacter(P)
 }

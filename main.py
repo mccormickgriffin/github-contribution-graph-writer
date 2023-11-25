@@ -1,7 +1,7 @@
 import subprocess
 import os
 from datetime import datetime, timedelta
-from letters import letters
+from graph_characters import graph_characters
 
 SATURDAY = 5
 SUNDAY = 6
@@ -24,12 +24,12 @@ def get_full_weeks(year):
     return int(days_count / 7)
 
 def word_block_width(word):
-    # Find blocks necessary for all letters in the word
+    # Find blocks necessary for all characters in the word
     word_block_count = 0
     for character in word:
-        word_block_count += letters[character].width()
+        word_block_count += graph_characters[character].width()
     
-    # Find the number of spaces between letters necessary
+    # Find the number of spaces necessary for between characters
     space_block_count = len(word) - 1
 
     return word_block_count + space_block_count
