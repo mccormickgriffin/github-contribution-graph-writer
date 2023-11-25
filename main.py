@@ -1,6 +1,7 @@
 import subprocess
 import os
 from datetime import datetime, timedelta
+from letters import letters
 
 SATURDAY = 5
 SUNDAY = 6
@@ -21,6 +22,18 @@ def get_full_weeks(year):
     days_count = (end_date - start_date).days + 1
 
     return int(days_count / 7)
+
+def word_block_width(word):
+    # Find blocks necessary for all letters in the word
+    word_block_count = 0
+    for character in word:
+        word_block_count += letters[character].width()
+    
+    # Find the number of spaces between letters necessary
+    space_block_count = len(word) - 1
+
+    return word_block_count + space_block_count
+
 
 def make_git_commit(commit_date):
     formatted_date = commit_date.strftime("%Y-%m-%d %H:%M:%S")
