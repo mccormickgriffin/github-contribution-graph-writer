@@ -2,7 +2,25 @@ import subprocess
 import os
 from datetime import datetime, timedelta
 
+SATURDAY = 5
+SUNDAY = 6
+
 COMMIT_FILE = "commit.md"
+
+def get_full_weeks(year):
+    # Find first Sunday
+    start_date = datetime(year, 1, 1)
+    while start_date.weekday() != SUNDAY:
+        start_date += timedelta(days=1)
+
+    # Find last Saturday
+    end_date = datetime(year, 12, 31)
+    while end_date.weekday() != SATURDAY: 
+        end_date -= timedelta(days=1)
+    
+    days_count = (end_date - start_date).days + 1
+
+    return int(days_count / 7)
 
 def make_git_commit(commit_date):
     formatted_date = commit_date.strftime("%Y-%m-%d %H:%M:%S")
