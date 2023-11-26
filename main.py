@@ -2,6 +2,7 @@ import subprocess
 import os
 from datetime import datetime, timedelta
 from graph_characters import graph_characters
+from graph_word import GraphWord
 
 SATURDAY = 5
 SUNDAY = 6
@@ -48,6 +49,7 @@ def main():
     # Get user input for what word they want to write on what years contribution graph
     year = int(input("What year would you like to write on? "))
     word = input("What would you like to write? ")
+    graph_word = GraphWord(word)
 
     # Create new folder for generated git repo
     folder_name = f"gcgw-{year}-{word}"
