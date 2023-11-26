@@ -161,21 +161,21 @@ P = [
 ]
 
 
-graph_characters = {
-    'A': GraphCharacter(A),
-    'B': GraphCharacter(B),
-    'C': GraphCharacter(C),
-    'D': GraphCharacter(D),
-    'E': GraphCharacter(E),
-    'F': GraphCharacter(F),
-    'G': GraphCharacter(G),
-    'H': GraphCharacter(H),
-    'I': GraphCharacter(I),
-    'J': GraphCharacter(J),
-    'K': GraphCharacter(K),
-    'L': GraphCharacter(L),
-    'M': GraphCharacter(M),
-    'N': GraphCharacter(N),
-    'O': GraphCharacter(O),
-    'P': GraphCharacter(P)
+character_to_graph_mapping = {
+    'A': A,
+    'B': B,
+    'C': C,
+    'D': D,
+    'E': E,
+    'F': F,
+    'G': G,
+    'H': H,
+    'I': I,
+    'J': J,
+    'K': K,
+    'L': L,
+    'M': M,
+    'N': N,
+    'O': O,
+    'P': P
 }
