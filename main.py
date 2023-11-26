@@ -1,8 +1,7 @@
-import subprocess
-import os
 from datetime import datetime, timedelta
 from graph_word import GraphWord
 from git_manager import GitManager
+from folder_manager import FolderManager
 
 SATURDAY = 5
 SUNDAY = 6
@@ -23,29 +22,21 @@ def get_full_weeks(year):
     return int(days_count / 7)
 
 def main():
+    fm = FolderManager()
+    gm = GitManager()
+    
     # Get user input for what word they want to write on what years contribution graph
     year = int(input("What year would you like to write on? "))
     word = input("What would you like to write? ")
+
     graph_word = GraphWord(word)
 
-    # Create new folder for generated git repo
     folder_name = f"gcgw-{year}-{word}"
-    create_folder_command = f"mkdir {folder_name}"
-    process = subprocess.Popen(create_folder_command,
-                            shell=True,
-                            stdout=subprocess.PIPE,
-                            stderr=subprocess.PIPE,
-                            text=True)
-    output, error = process.communicate()
-    print(output)
-
-    if process.returncode == 0:
-        os.chdir(folder_name)
-        gm = GitManager()
-        gm.init_repo()
-        gm.make_commits_for_enitre_year(year)
-    else:
-        print(f"Error creating folder: {error}")
+    fm.create_and_open_folder(folder_name)
+    
+    gm.init_repo()
+    gm.make_commits_for_enitre_year(year)
+    
 
 if __name__ == "__main__":
     main()
