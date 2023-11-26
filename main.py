@@ -21,15 +21,28 @@ def get_full_weeks(year):
 
     return int(days_count / 7)
 
+def get_year_and_graph_word():
+    while True:
+        year = int(input("What year would you like to write on? "))
+        word = input("What would you like to write? ")
+
+        full_weeks_in_year = get_full_weeks(year)
+        graph_word = GraphWord(word)
+        word_width = graph_word.width() 
+        if  word_width > full_weeks_in_year:
+            print(f"Your message is too long for the space in {year}")
+            print(f"{full_weeks_in_year} full weeks available. {word_width} required for {word}")
+        else:
+            break
+    
+    return year, graph_word
+
 def main():
     fm = FolderManager()
     gm = GitManager()
-    
-    # Get user input for what word they want to write on what years contribution graph
-    year = int(input("What year would you like to write on? "))
-    word = input("What would you like to write? ")
 
-    graph_word = GraphWord(word)
+    # Get user input    
+    year, word = get_year_and_graph_word()
 
     folder_name = f"gcgw-{year}-{word}"
     fm.create_and_open_folder(folder_name)
