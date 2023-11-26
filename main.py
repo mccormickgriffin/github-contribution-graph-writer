@@ -2,11 +2,10 @@ import subprocess
 import os
 from datetime import datetime, timedelta
 from graph_word import GraphWord
+from git_manager import GitManager
 
 SATURDAY = 5
 SUNDAY = 6
-
-COMMIT_FILE = "commit.md"
 
 def get_full_weeks(year):
     # Find first Sunday
@@ -22,15 +21,6 @@ def get_full_weeks(year):
     days_count = (end_date - start_date).days + 1
 
     return int(days_count / 7)
-
-def make_git_commit(commit_date):
-    formatted_date = commit_date.strftime("%Y-%m-%d %H:%M:%S")
-    with open(COMMIT_FILE, 'w') as file:
-        file.write(formatted_date)
-    os.environ['GIT_COMMITTER_DATE'] = formatted_date
-    os.environ['GIT_AUTHOR_DATE'] = formatted_date
-    subprocess.run(["git", "add", COMMIT_FILE, "-f"])
-    subprocess.run(["git", "commit", "--date", f'"{formatted_date}"', "-m", f'"Commit for {formatted_date}"'])
 
 def main():
     # Get user input for what word they want to write on what years contribution graph
@@ -51,16 +41,9 @@ def main():
 
     if process.returncode == 0:
         os.chdir(folder_name)
-        subprocess.run(["git", "init"])
-        with open(COMMIT_FILE, 'w'):
-            pass
-
-        start_date = datetime(year, 1, 1, 12, 0, 0)
-        end_date = datetime(year, 12, 31, 12, 0, 0)
-        current_date = start_date
-        while current_date <= end_date:
-            make_git_commit(current_date)
-            current_date += timedelta(days=1)
+        gm = GitManager()
+        gm.init_repo()
+        gm.make_commits_for_enitre_year(year)
     else:
         print(f"Error creating folder: {error}")
 
