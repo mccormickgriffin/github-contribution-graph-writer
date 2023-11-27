@@ -1,10 +1,12 @@
+import copy
+
 ROW_COUNT = 7
 
 class GraphCharacter:
     def __init__(self, graph) -> None:
         if (len(graph) != ROW_COUNT):
             raise ValueError("Invalid graph character height")
-        self.graph = graph
+        self.graph = copy.deepcopy(graph)
 
     def width(self):
         return len(self.graph[0])
@@ -15,7 +17,7 @@ class GraphCharacter:
         
         for i in range(ROW_COUNT):
             # Add a blank space for between characters
-            self.graph[i] += [0]
+            self.graph[i].append(0)
             # Concatinate the other letter
             self.graph[i] += other.graph[i]
         
