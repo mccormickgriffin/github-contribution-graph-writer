@@ -1,5 +1,3 @@
-from graph_character import GraphCharacter
-
 A = [
     [0,0,1,0,0],
     [0,1,0,1,0],
