@@ -18,3 +18,9 @@ class GraphWord:
 
     def width(self):
         return self.graph_string.width()
+    
+    def print_graph(self):
+        for row in self.graph_string.graph:
+            print(row)
+
+    
