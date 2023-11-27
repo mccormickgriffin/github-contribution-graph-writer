@@ -15,9 +15,7 @@ class GraphWord:
             self.graph_string += GraphCharacter(character_to_graph_mapping[word[i]])
 
         self.word = word
-
-    def width(self):
-        return self.graph_string.width()
+        self.width = self.word.width
     
     def print_graph(self):
         for row in self.graph_string.graph:

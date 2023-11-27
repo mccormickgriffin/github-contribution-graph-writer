@@ -7,9 +7,7 @@ class GraphCharacter:
         if (len(graph) != ROW_COUNT):
             raise ValueError("Invalid graph character height")
         self.graph = copy.deepcopy(graph)
-
-    def width(self):
-        return len(self.graph[0])
+        self.width = len(self.graph[0])
     
     def __iadd__(self, other):
         if not isinstance(other, GraphCharacter):
