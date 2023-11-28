@@ -36,8 +36,12 @@ def get_year_details_and_graph_word():
     return year_details, graph_word
 
 def main():
-    # Get user input    
-    yd, gw = get_year_details_and_graph_word()
+    # Get user input
+    try:    
+        yd, gw = get_year_details_and_graph_word()
+    except KeyboardInterrupt:
+        print("\nUser interrupted. Exiting...")
+        exit()
 
     # Center graph word
     extra_spaces = yd.full_weeks - gw.width
