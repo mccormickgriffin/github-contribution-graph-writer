@@ -1,3 +1,4 @@
+import math
 from graph_word import GraphWord
 from year_details import YearDetails
 from folder_manager import FolderManager
@@ -21,8 +22,13 @@ def get_year_details_and_graph_word():
 def main():
     # Get user input    
     yd, gw = get_year_details_and_graph_word()
-    gw.print_graph()
-    gwcw = GraphWordCommitWriter(gw, yd)
+
+    # Center graph word
+    extra_spaces = yd.full_weeks - gw.width
+    front_spaces = math.floor(extra_spaces / 2)
+    back_spaces = math.ceil(extra_spaces / 2)
+    gw.pad_front(front_spaces)
+    gw.pad_back(back_spaces)
 
     # Create folder based on user input and navigate into it
     fm = FolderManager()
@@ -30,6 +36,7 @@ def main():
     fm.create_and_open_folder(folder_name)
 
     # Generate all commits to spell word on Github's contribution graph
+    gwcw = GraphWordCommitWriter(gw, yd)
     gwcw.write_word()
     
 if __name__ == "__main__":

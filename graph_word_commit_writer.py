@@ -32,17 +32,9 @@ class GraphWordCommitWriter:
             end_date -= timedelta(days=1)
         
         # Generate commits based on graph_word data
-        for column in range(self.graph_word.width):
-            print(f"Column: {column}")
+        for column in range(self.year_details.full_weeks):
             for row in range(ROW_COUNT):
-                print(f"Row: {row}")
-
                 num_commits = 5 if self.graph_word.get(row, column) else 1
                 for _ in range(num_commits):
                     self.gm.make_git_commit(current_date)
                 current_date += timedelta(days=1)
-
-        # Fill in the rest of the full weeks
-        while current_date <= end_date:
-            self.gm.make_git_commit(current_date)
-            current_date += timedelta(days=1)

@@ -20,6 +20,12 @@ class GraphWord:
     def get(self, row, column):
         return self.graph_string.graph[row][column]
     
+    def pad_front(self, spaces):
+        self.graph_string.graph = [[0] * spaces + row for row in self.graph_string.graph]
+
+    def pad_back(self, spaces):
+        self.graph_string.graph = [row + [0] * spaces for row in self.graph_string.graph]
+    
     def print_graph(self):
         for row in self.graph_string.graph:
             print(row)
