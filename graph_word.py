@@ -28,6 +28,10 @@ class GraphWord:
     
     def print_graph(self):
         for row in self.graph_string.graph:
-            print(row)
-
+            for block in row:
+                if block:
+                    print("X ", end="")
+                else:
+                    print("  ", end="")
+            print("")
     
