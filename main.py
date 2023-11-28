@@ -4,18 +4,34 @@ from year_details import YearDetails
 from folder_manager import FolderManager
 from graph_word_commit_writer import GraphWordCommitWriter
 
+def get_confirmation(word, year):
+    while True:
+        user_input = input(f"Do you want to write {word} on {year}? (yes/no): ").strip().lower()
+        if user_input in ['yes', 'y']:
+            return True
+        elif user_input in ['no', 'n']:
+            return False
+        else:
+            print("Please enter 'yes' or 'no'.")
+
 def get_year_details_and_graph_word():
     while True:
-        year = int(input("What year would you like to write on? "))
+        year = int(input("What year would you like to write on? ").strip())
         year_details = YearDetails(year)
-        word = input("What would you like to write? ")
-        graph_word = GraphWord(word)
+        word = input("What would you like to write? ").strip()
+        graph_word = GraphWord(word.upper())
 
         if  graph_word.width > year_details.full_weeks:
             print(f"Your message is too long for the space in {year}")
             print(f"{year_details.full_weeks} full weeks available. {graph_word.width} required for {word}")
         else:
-            break
+            print("Preview: ")
+            graph_word.print_graph()
+            confirmation = get_confirmation(word, year)
+            if confirmation:
+                break
+            else:
+                continue
     
     return year_details, graph_word
 
